@@ -19,10 +19,12 @@ public class Searcher : MonoBehaviour
 
     void Update()
     {
+        //Move your ass in the fix update
         Vector3 move = transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal");
         move *= Speed * Time.deltaTime;
         move.y = body.velocity.y;
 
+        //body.MovePosition
         body.velocity = move;
 
         if (Input.GetButtonDown("Jump"))
