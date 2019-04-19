@@ -60,8 +60,7 @@ public class Manager : MonoBehaviour
             {
                 case State.PreSouris:
                     DefaultCamera.enabled = false;
-                    souris.Add(Instantiate(PrefabSouris));
-                    souris[currentSouris].transform.position = Vector3.up * 1.2f;
+                    souris.Add(Instantiate(PrefabSouris, transform.position, transform.rotation));
                     UIManager.TimeRemaining = timeRemaining = HideTime;
                     UIManager.DisplayToast(HideTime + " secondes pour te cacher !");
                     state = State.RoundSouris;
@@ -86,8 +85,7 @@ public class Manager : MonoBehaviour
 
                 case State.PreChat:
                     DefaultCamera.enabled = false;
-                    chat = Instantiate(PrefabChat);
-                    chat.transform.position = Vector3.up * 1.2f;
+                    chat = Instantiate(PrefabChat, transform.position, transform.rotation);
                     UIManager.TimeRemaining = timeRemaining = BaseSearchTime + (NbSouris - 1) * BonusSearchTime;
                     UIManager.DisplayToast(timeRemaining + " secondes pour trouver " + (NbSouris > 1 ? "les" : "la") + " Souris !");
                     UIManager.Reticle.enabled = true;

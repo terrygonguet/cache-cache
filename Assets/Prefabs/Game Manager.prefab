@@ -196,7 +196,7 @@ RectTransform:
   - {fileID: 1242492276034106547}
   - {fileID: 1242492274494091277}
   m_Father: {fileID: 259881046067546890}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -313,7 +313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 259881046067546890}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1242492275308200297
 Camera:
@@ -476,8 +476,8 @@ Transform:
   m_LocalPosition: {x: 4.9, y: 6.11, z: -4.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1242492275179061088}
   - {fileID: 1242492275308200296}
+  - {fileID: 1242492275179061088}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 13.2890005, y: -50.281002, z: 0}
@@ -510,11 +510,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 259881046067546890}
     m_Modifications:
-    - target: {fileID: 6300712258385870528, guid: b3c4614c3a914ee44ae9d8632e53df12,
-        type: 3}
-      propertyPath: m_Name
-      value: UI Manager
-      objectReference: {fileID: 0}
     - target: {fileID: 6300712258385870532, guid: b3c4614c3a914ee44ae9d8632e53df12,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -619,6 +614,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300712258385870528, guid: b3c4614c3a914ee44ae9d8632e53df12,
+        type: 3}
+      propertyPath: m_Name
+      value: UI Manager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3c4614c3a914ee44ae9d8632e53df12, type: 3}
