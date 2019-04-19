@@ -68,7 +68,7 @@ public class Manager : MonoBehaviour
 
                 case State.RoundSouris:
                     Souris compoSouris = souris[currentSouris].GetComponent<Souris>();
-                    compoSouris.enabled = false;
+                    compoSouris.SetControlsEnabled(false);
                     DefaultCamera.enabled = true;
 
                     if (++currentSouris >= NbSouris)
@@ -94,7 +94,7 @@ public class Manager : MonoBehaviour
 
                 case State.RoundChat:
                     Chat compoChat = chat.GetComponent<Chat>();
-                    compoChat.enabled = false;
+                    compoChat.SetControlsEnabled(false);
                     UIManager.Reticle.enabled = false;
                     timeRemaining = 5;
                     UIManager.DisplayMessage("Game Over !");

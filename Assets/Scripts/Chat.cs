@@ -12,6 +12,7 @@ public class Chat : MonoBehaviour
     private new Camera camera;
     private float verticalVelocity;
     private Vector2 cameraRotation = new Vector2(0, 0);
+    private bool controlsEnabled = true;
 
     void Start()
     {
@@ -26,32 +27,39 @@ public class Chat : MonoBehaviour
     void FixedUpdate()
     {
         // movement stuff
-        Vector3 movement = 
-            transform.forward * Input.GetAxis("Vertical") + 
-            transform.right * Input.GetAxis("Horizontal");
+        Vector3 movement = controlsEnabled 
+            ? transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal") 
+            : new Vector3();
+
         movement *= Speed;
 
-        // because CharacterController#isGrounded is buggy
-        bool isGroundedForReal = Physics.Raycast(transform.position, -transform.up, 1.2f);
 
-        if (Input.GetButtonDown("Jump") && isGroundedForReal)
-        {
+        if (Input.GetButtonDown("Jump") && charaController.isGrounded && controlsEnabled)
             verticalVelocity = JumpForce;
-        }
-        else if (isGroundedForReal)
-            verticalVelocity = 0;
-        else 
+        else
+        {
+            // reset if character is touching ground but still apply
+            // 1 frame of gravity to update CharacterController#isGrounded
+            if (charaController.isGrounded)
+                verticalVelocity = 0;
             verticalVelocity += Gravity * Time.fixedDeltaTime; // mult by time cause gravity is in m/s²
+        }
 
         movement += transform.up * verticalVelocity;
         charaController.Move(movement * Time.fixedDeltaTime);
 
         // Camera and player rotation
-        cameraRotation = new Vector2(
-            Mathf.Clamp(Input.GetAxis("Mouse Y") + cameraRotation.x, -85, 90),
-            (Input.GetAxis("Mouse X") + cameraRotation.y) % 360
-        );
+        cameraRotation = controlsEnabled 
+            ? new Vector2(
+                Mathf.Clamp(Input.GetAxis("Mouse Y") + cameraRotation.x, -85, 90),
+                (Input.GetAxis("Mouse X") + cameraRotation.y) % 360)
+            : cameraRotation;
         transform.rotation = Quaternion.Euler(0, cameraRotation.y, 0);
         camera.transform.localRotation = Quaternion.Euler(cameraRotation.x, 0, 0);
+    }
+
+    public void SetControlsEnabled(bool value)
+    {
+        controlsEnabled = value;
     }
 }
